@@ -30,10 +30,8 @@ Controls:Disable()
 local function OnInput(Input : InputObject)
 	if Bind[Input.KeyCode.Name] ~= nil then
 		for index, key in Hold do
-			if Hold[index] ~= nil then
-				if index ~= Input.KeyCode.Name then
-					Hold[index] = false
-				end
+			if index ~= Input.KeyCode.Name then
+				Hold[index] = false
 			end
 		end
 		Hold[Input.KeyCode.Name] = true
@@ -44,10 +42,8 @@ end
 local function OnEnded(Input : InputObject)
 	if Bind[Input.KeyCode.Name] ~= nil then
 		for index, key in Hold do
-			if Hold[index] ~= nil then
-				if index ~= Input.KeyCode.Name then
-					Hold[index] = Bind[index]
-				end
+			if index ~= Input.KeyCode.Name then
+				Hold[index] = Bind[index]
 			end
 		end
 		Hold[Input.KeyCode.Name] = false
