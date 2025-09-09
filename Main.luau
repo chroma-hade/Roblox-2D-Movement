@@ -11,6 +11,8 @@ local Controls = require(Player.PlayerScripts.PlayerModule):GetControls()
 local RootPart : BasePart = Character:WaitForChild("HumanoidRootPart")
 local Humanoid : Humanoid = Character:WaitForChild("Humanoid")
 
+local CameraOffset = CFrame.new(0,25,11) * CFrame.Angles(-math.rad(66), 0, 0)
+
 local Keys = {
 	["W"] = {
 		["Vector3"] = Vector3.new(0, 0, -1),
@@ -74,7 +76,7 @@ local function OnRenderStep()
 	if Vector ~= Vector3.new(0, 0, 0) then
 		RootPart.CFrame = CFrame.new(RootPart.Position, RootPart.Position + Vector)
 	end
-	Camera.CFrame = CFrame.new(RootPart.Position) * CFrame.new(0,25,11) * CFrame.Angles(-math.rad(66), 0, 0)
+	Camera.CFrame = CFrame.new(RootPart.Position) * CameraOffset
 	Humanoid:MoveTo(RootPart.Position + Vector)	
 end
 
