@@ -27,8 +27,6 @@ local Keys = {
 	},
 }
 
-Controls:Disable()
-
 local function SetupKeyValue()
 	for Key, Value : {} in Keys do
 		Value["Hold"] = false
@@ -79,6 +77,7 @@ local function OnRenderStep()
 	Humanoid:MoveTo(RootPart.Position + Vector)	
 end
 
+Controls:Disable()
 SetupKeyValue()
 
 UserInputService.InputBegan:Connect(OnInput)
