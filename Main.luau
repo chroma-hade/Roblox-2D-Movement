@@ -6,11 +6,10 @@ local Camera = workspace.CurrentCamera
 local Player : Player = game:GetService("Players").LocalPlayer
 local Character = Player.Character
 
-local Controls = require(Player.PlayerScripts.PlayerModule):GetControls()
-
 local RootPart : BasePart = Character:WaitForChild("HumanoidRootPart")
 local Humanoid : Humanoid = Character:WaitForChild("Humanoid")
 
+local Controls = require(Player.PlayerScripts.PlayerModule):GetControls()
 local CameraOffset = CFrame.new(0,25,11) * CFrame.Angles(-math.rad(66), 0, 0)
 
 local Keys = {
