@@ -36,30 +36,34 @@ end
 
 local function ResetOthers(KeyName : string)
 	for Key : string, Value : {} in Keys do
-		if Key ~= KeyName then
-			Keys[Key]["Hold"] = false
+		if Key == KeyName then
+			continue
 		end
+		Keys[Key]["Hold"] = false
 	end
 end
 
 local function OnInput(Input : InputObject)
-	if Keys[Input.KeyCode.Name] ~= nil then
-		Keys[Input.KeyCode.Name]["Hold"] = true
-		Keys[Input.KeyCode.Name]["Bind"] = true
-		ResetOthers(Input.KeyCode.Name)
+	if Keys[Input.KeyCode.Name] == nil then
+		return
 	end
+	Keys[Input.KeyCode.Name]["Hold"] = true
+	Keys[Input.KeyCode.Name]["Bind"] = true
+	ResetOthers(Input.KeyCode.Name)
 end
 
 local function OnEnded(Input : InputObject)
-	if Keys[Input.KeyCode.Name] ~= nil then
-		for Key : string, Value : {} in Keys do
-			if Key ~= Input.KeyCode.Name then
-				Keys[Key]["Hold"] = Keys[Key]["Bind"]
-			end
-		end
-		Keys[Input.KeyCode.Name]["Hold"] = false
-		Keys[Input.KeyCode.Name]["Bind"] = false
+	if Keys[Input.KeyCode.Name] == nil then
+		return
 	end
+	for Key : string, Value : {} in Keys do
+		if Key == Input.KeyCode.Name then
+			continue
+		end
+		Keys[Key]["Hold"] = Keys[Key]["Bind"]
+	end
+	Keys[Input.KeyCode.Name]["Hold"] = false
+	Keys[Input.KeyCode.Name]["Bind"] = false
 end
 
 local function OnRenderStep()
